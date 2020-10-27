@@ -12,7 +12,7 @@ class LibraryController extends AbstractController {
     /**
      * @Route("/", name="book_list")
      */
-    public function index() {
+    public function index(): Response {
 
       $books = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
@@ -22,14 +22,14 @@ class LibraryController extends AbstractController {
     /**
      * @Route("/book/new", name="add_book")
      */
-    public function addBook() {
+    public function addBook(): Response {
       return $this->render('library/add.html.twig');
     }
 
     /**
      * @Route("/book/{id}", name="edit_book")
      */
-    public function editBook($id) {
+    public function editBook($id): Response {
       return $this->render('library/edit.html.twig');
     }
 

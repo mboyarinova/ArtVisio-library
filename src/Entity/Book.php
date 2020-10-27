@@ -40,24 +40,27 @@ class Book
       return $this->title;
     }
 
-    public function setTitle(string $title) {
+    public function setTitle(string $title): Book {
       $this->title = $title;
+      return $this;
     }
 
     public function getAuthor(): string {
       return $this->author;
     }
 
-    public function setAuthor(string $author) {
+    public function setAuthor(string $author): Book {
       $this->author = $author;
+      return $this;
     }
 
     public function getYear(): int {
       return $this->year;
     }
 
-    public function setYear(int $year) {
+    public function setYear(int $year): Book {
       $this->year = $year;
+      return $this;
     }
 
 }

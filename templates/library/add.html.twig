@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Библиотека АртВизио{% endblock %}
+{% block title %}Библиотека АртВизио | Добавить книгу{% endblock %}
 
 {% block body %}
   <h1>Добавить книгу</h2>
+  <br>
+  {{ form_start(form) }}
+  {{ form_widget(form) }}
+  {{ form_end(form) }}
   <hr>
   <a href="/">Назад</a>
 {% endblock %}

@@ -3,12 +3,11 @@
 {% block title %}Библиотека АртВизио{% endblock %}
 
 {% block body %}
-  <h1>Список книг</h1>
   {% if books %}
+    <h1>Список книг</h1>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>ID</id>
           <th>Название</th>
           <th>Автор</th>
           <th>Год</th>
@@ -18,12 +17,11 @@
       <tbody>
         {% for book in books %}
           <tr>
-            <td>{{ book.id }}</td>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.year }}</td>
             <td>
-              <a href="/book/{{ book.id }}"
+              <a href="/book/edit/{{ book.id }}"
                  class="btn btn-dark">Редактировать</a>
             </td>
           </tr>

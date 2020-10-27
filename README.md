@@ -27,11 +27,12 @@ composer install
 ```
 DATABASE_URL=mysql://db_user:'db_password'@127.0.0.1:3306/library?serverVersion=db_server_version
 ```
-3. Запустить веб-сервер и MySQL (при разработке использовался XAMPP).
+3. Запустить локальный сервер и MySQL.
 4. В терминале MySQL создать базу данных:
 ```
 CREATE DATABASE library;
 USE library;
 CREATE TABLE book (id INT AUTO_INCREMENT NOT NULL, title TINYTEXT NOT NULL, author TINYTEXT NOT NULL, year INT NOT NULL, PRIMARY KEY(id));
 ```
-5. Б браузере открыть localhost/ArtVisio-library/public
+5. Настроить виртуальный хост на локальном сервере (на Apache: conf/extra/httpd-vhosts.conf)
+5. Б браузере открыть адрес виртуального хоста.

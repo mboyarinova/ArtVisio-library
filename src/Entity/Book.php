@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
+ * @UniqueEntity(fields={"title", "author"}, message="Эта книга уже имеется в библиотеке!")
  */
 class Book
 {

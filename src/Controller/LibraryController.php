@@ -32,7 +32,6 @@ class LibraryController extends AbstractController {
       $book = new Book();
 
       $errors = $validator->validate($book);
-
       if (count($errors) > 0) {
           $errorsString = (string) $errors;
           return new Response($errorsString);

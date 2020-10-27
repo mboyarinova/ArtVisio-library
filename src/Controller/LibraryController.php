@@ -29,7 +29,7 @@ class LibraryController extends AbstractController {
     /**
      * @Route("/book/{id}", name="edit_book")
      */
-    public function editBook($id): Response {
+    public function editBook(int $id): Response {
       return $this->render('library/edit.html.twig');
     }
 

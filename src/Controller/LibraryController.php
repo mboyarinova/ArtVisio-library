@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class LibraryController extends AbstractController {
     /**
@@ -26,9 +27,17 @@ class LibraryController extends AbstractController {
      * @Route("/book/new", name="add_book")
      * Method({"GET", "POST"})
      */
-    public function addBook(Request $request): Response {
+    public function addBook(Request $request, ValidatorInterface $validator): Response {
 
       $book = new Book();
+
+      $errors = $validator->validate($book);
+
+      if (count($errors) > 0) {
+          $errorsString = (string) $errors;
+          return new Response($errorsString);
+      }
+
       $form = $this->createFormBuilder($book)
         ->add('title', TextType::class, array(
           'label' => 'Название',

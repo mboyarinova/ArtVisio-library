@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -29,6 +30,10 @@ class Book
 
     /**
      *@ORM\Column(type="integer")
+     *@Assert\Length(
+     *   max=4,
+     *   maxMessage="Введите правильный год"
+     * )
      */
     private $year;
 

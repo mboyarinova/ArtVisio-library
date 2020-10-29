@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BookType extends AbstractType {
-  public function buildForm(FormBuilderInterface $builder, array $options) {
+  public function buildForm(FormBuilderInterface $builder, array $options): bool {
     $builder
       ->add('title', TextType::class, array(
         'label' => 'Название',
@@ -24,6 +24,7 @@ class BookType extends AbstractType {
         'label' => 'Сохранить',
         'attr' => array('class' => 'btn btn-primary mt-3')
     ));
+    return true;
   }
 }
 

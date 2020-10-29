@@ -12,7 +12,6 @@
 * Symfony >= 5.1
 * PHP >= 7.2.5
 * Twig >= 2.12
-* Composer >= 2.0.2
 * MySQL
 
 ## Поднятие и настройка приложения
@@ -23,16 +22,15 @@ git clone https://github.com/mboyarinova/ArtVisio-library
 cd Artvisio-library
 composer install
 ```
-2. В файле .env отредактировать параметр DATABASE_URL, где db_user - имя пользователя базы данных, db_password - пароль, и db_server_version - версия сервера:
+2. Создать файл .env.local и замените значения в DATABASE_URL на актуальные.
 ```
 DATABASE_URL=mysql://db_user:'db_password'@127.0.0.1:3306/library?serverVersion=db_server_version
 ```
 3. Запустить локальный сервер и MySQL.
-4. В терминале MySQL создать базу данных:
+4. Создать базу данных.
 ```
-CREATE DATABASE library;
-USE library;
-CREATE TABLE book (id INT AUTO_INCREMENT NOT NULL, title TINYTEXT NOT NULL, author TINYTEXT NOT NULL, year INT NOT NULL, PRIMARY KEY(id));
+php bin/console doctrine:database:create --if-not-exists
+php bin/console doctrine:migrations:migrate --no-interaction
 ```
 5. Настроить виртуальный хост на локальном сервере (на Apache: conf/extra/httpd-vhosts.conf)
 5. Б браузере открыть адрес виртуального хоста.

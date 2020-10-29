@@ -21,18 +21,21 @@ class Book
     private $id;
 
     /**
-     *@ORM\Column(type="text", length=100)
+     * @ORM\Column(type="text", length=100)
+     * @Assert\NotNull
      */
     private $title;
 
     /**
-     *@ORM\Column(type="text", length=100)
+     * @ORM\Column(type="text", length=100)
+     * @Assert\NotNull
      */
     private $author;
 
     /**
-     *@ORM\Column(type="integer")
-     *@Assert\Length(
+     * @ORM\Column(type="integer")
+     * @Assert\NotNull
+     * @Assert\Length(
      *   max=4,
      *   maxMessage="Введите правильный год"
      * )

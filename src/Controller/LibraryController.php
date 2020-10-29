@@ -2,15 +2,13 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Form\Type\BookType;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class LibraryController extends AbstractController {
     /**
@@ -27,32 +25,11 @@ class LibraryController extends AbstractController {
      * @Route("/book/new", name="add_book")
      * Method({"GET", "POST"})
      */
-    public function addBook(Request $request, ValidatorInterface $validator): Response {
+    public function addBook(Request $request): Response {
 
       $book = new Book();
 
-      $errors = $validator->validate($book);
-      if (count($errors) > 0) {
-          $errorsString = (string) $errors;
-          return new Response($errorsString);
-      }
-
-      $form = $this->createFormBuilder($book)
-        ->add('title', TextType::class, array(
-          'label' => 'Название',
-          'attr' => array('class' => 'form-control')))
-        ->add('Author', TextType::class, array(
-          'label' => 'Автор',
-          'attr' => array('class' => 'form-control')))
-        ->add('Year',  TextType::class, array(
-          'label' => 'Год',
-          'attr' => array('class' => 'form-control')))
-        ->add('save', SubmitType::class, array(
-          'label' => 'Сохранить',
-          'attr' => array('class' => 'btn btn-primary mt-3')
-        ))
-        ->getForm();
-
+      $form = $this->createForm(BookType::class, $book);
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid()) {
@@ -75,22 +52,7 @@ class LibraryController extends AbstractController {
 
       $book = $this->getDoctrine()->getRepository(Book::class)->find($id);
 
-      $form = $this->createFormBuilder($book)
-        ->add('title', TextType::class, array(
-          'label' => 'Название',
-          'attr' => array('class' => 'form-control')))
-        ->add('Author', TextType::class, array(
-          'label' => 'Автор',
-          'attr' => array('class' => 'form-control')))
-        ->add('Year',  TextType::class, array(
-          'label' => 'Год',
-          'attr' => array('class' => 'form-control')))
-        ->add('save', SubmitType::class, array(
-          'label' => 'Сохранить',
-          'attr' => array('class' => 'btn btn-primary mt-3')
-        ))
-        ->getForm();
-
+      $form = $this->createForm(BookType::class, $book);
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid()) {

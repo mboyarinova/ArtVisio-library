@@ -22,7 +22,7 @@ git clone https://github.com/mboyarinova/ArtVisio-library
 cd Artvisio-library
 composer install
 ```
-2. Создать файл .env.local и замените значения в DATABASE_URL на актуальные.
+2. Создать файл .env.local и замените значения в DATABASE_URL в .env на актуальные.
 ```
 DATABASE_URL=mysql://db_user:'db_password'@127.0.0.1:3306/library?serverVersion=db_server_version
 ```
